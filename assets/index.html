@@ -1,4 +1,9 @@
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,13 +63,8 @@ nav::before {
   pointer-events: none;
 }
 .nav-logo-img {
-  height: 56px;
-  width: auto;
-  position: relative;
-  z-index: 1;
-  /* Clever trick: Draws a dark box behind the logo, then uses 'screen' to make the white background invisible */
-  background: #00070F;
-  mix-blend-mode: screen;
+  height: 56px; width: auto;
+  position: relative; z-index: 1;
   transition: opacity 0.2s;
   -webkit-tap-highlight-color: transparent;
   outline: none;
@@ -418,17 +418,7 @@ footer {
   border-top: 1px solid rgba(240,244,255,0.06);
   display: flex; justify-content: space-between; align-items: center;
 }
-.footer-logo-img {
-  height: 44px;
-  width: auto;
-  background: #00070F;
-  mix-blend-mode: screen;
-  opacity: 0.8;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  transition: opacity 0.2s;
-  display: block;
-}
+.footer-logo-img { height: 44px; width: auto; opacity: 0.8; -webkit-tap-highlight-color: transparent; outline: none; transition: opacity 0.2s; display: block; }
 .footer-logo-img:hover { opacity: 1; }
 .footer-tagline { font-size: 11px; font-family: 'Space Mono', monospace; color: rgba(240,244,255,0.28); letter-spacing: 0.1em; margin-top: 6px; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
@@ -509,103 +499,8 @@ footer {
   margin-top: 8px;
 }
 .form-note { font-size: 12px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
-/* --- ENHANCED SUCCESS MODAL STYLES --- */
 .modal-success {
-  display: none; 
-  text-align: center; 
-  padding: 20px 10px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animated Glow Checkmark Container */
-.success-icon-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 28px;
-  opacity: 0;
-  transform: scale(0.8);
-  animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.success-icon-wrap svg {
-  width: 64px; 
-  height: 64px;
-  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.6));
-}
-
-.success-icon-wrap .check-circle {
-  fill: none;
-  stroke: url(#successGradient);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  animation: drawCheck 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.success-icon-wrap .check-mark {
-  fill: none;
-  stroke: url(#successGradient);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 50;
-  stroke-dashoffset: 50;
-  animation: drawCheck 0.5s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.modal-success h3 {
-  font-size: 28px; 
-  font-weight: 700; 
-  letter-spacing: -0.03em; 
-  margin-bottom: 12px;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0;
-  transform: translateY(15px);
-  animation: slideUpFade 0.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.modal-success p {
-  font-size: 15px; 
-  color: rgba(240,244,255,0.7);
-  line-height: 1.6;
-  max-width: 320px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(15px);
-  animation: slideUpFade 0.6s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Animations */
-@keyframes popIn {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
-}
-@keyframes drawCheck {
-  to { stroke-dashoffset: 0; }
-}
-@keyframes slideUpFade {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Make Modal Overlay more transparent */
-.modal-overlay {
-  background: rgba(0, 7, 15, 0.7); /* Reduced from 0.96 to 0.7 */
-  backdrop-filter: blur(6px); /* Reduced from 20px to 6px */
-}
-
-/* Glassmorphism Modal Box */
-.modal {
-  background: rgba(1, 8, 16, 0.75); /* Slightly transparent */
-  backdrop-filter: blur(12px); /* Glass effect on the box itself */
-  border: 1px solid rgba(240, 244, 255, 0.08);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  display: none; text-align: center; padding: 20px 0;
 }
 .modal-success .success-icon { font-size: 48px; margin-bottom: 20px; }
 .modal-success h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
@@ -864,39 +759,25 @@ footer {
       </form>
     </div>
     <div class="modal-success" id="modalSuccess">
-  <!-- Animated SVG Checkmark -->
-  <div class="success-icon-wrap">
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00E5FF" />
-          <stop offset="50%" stop-color="#3B82F6" />
-          <stop offset="100%" stop-color="#7C3AED" />
-        </linearGradient>
-      </defs>
-      <circle class="check-circle" cx="32" cy="32" r="28" />
-      <polyline class="check-mark" points="22,32 30,40 44,24" />
-    </svg>
-  </div>
-  
-  <h3>Message received.</h3>
-  <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
-</div>
+      <div class="success-icon">→</div>
+      <h3>Message received.</h3>
+      <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
+    </div>
   </div>
 </div>
 
 
 <!-- NAV -->
 <nav>
-  <!-- Added specific CSS class to ensure logo turns white -->
-  <img src="/somehow-logo.png" class="nav-logo-img" alt="Somehow" onclick="window.scrollTo({top:0,behavior:'smooth'});" style="cursor:none;">
-  
+  <img src="./somehow-logo.PNG" class="nav-logo-img" alt="Somehow" onclick="window.scrollTo({top:0,behavior:'smooth'});" style="cursor:none;">
   <button class="chaos-trigger" id="chaosTrigger" aria-label="Open menu">
-    <svg class="ct-svg" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="ct-path-1" d="M4 6 L10 13 L16 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
+  <svg class="ct-svg" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="ct-path-1" d="M4 6 L10 13 L16 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 </nav>
+
+
 
 <!-- HERO -->
 <section id="hero">
@@ -1217,18 +1098,17 @@ footer {
 
 
 <!-- FOOTER -->
-<!-- FOOTER -->
 <footer>
   <div>
-    <!-- Added specific CSS class to ensure logo turns white -->
-    <img src="/somehow-logo.png" class="footer-logo-img" alt="Somehow" onclick="window.scrollTo({top:0,behavior:'smooth'});" style="cursor:none;">
+    <img src="./somehow-logo.PNG" class="footer-logo-img" alt="Somehow" onclick="window.scrollTo({top:0,behavior:'smooth'});" style="cursor:none;">
     <div class="footer-tagline">Chaos → Creativity → Clarity</div>
   </div>
   <div class="footer-right">
-    <button class="footer-contact open-modal" style="background:none;border:none;font-family:inherit;">hello@somehow.studio</button>
-    <div class="footer-copy">© 2026 Somehow Studio. All rights reserved.</div>
+    <button class="footer-contact open-modal" style="background:none;border:none;font-family:inherit;">hello@somehow.pro</button>
+    <div class="footer-copy">© 2026 Somehow pro. All rights reserved.</div>
   </div>
 </footer>
+
 
 <!-- CHAOS MENU -->
 <div class="chaos-menu" id="chaosMenu">
@@ -1411,11 +1291,11 @@ function initModal() {
   const modalFormWrap = document.getElementById('modalFormWrap');
   if (!modal || !modalClose || !contactForm) return;
 
-    function openModal() {
+  function openModal() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     modalFormWrap.style.display = '';
-    modalSuccess.style.display = 'none'; // reset
+    modalSuccess.style.display = 'none';
   }
 
   function closeModal() {
@@ -1470,16 +1350,10 @@ function initModal() {
 
       const data = await response.json();
 
-        // Inside contactForm.addEventListener...
-  if (data.success) {
-    modalFormWrap.style.display = 'none';
-    modalSuccess.style.display = 'block';
-    // Force animation replay by removing and re-adding the block quickly
-    modalSuccess.style.animation = 'none';
-    modalSuccess.offsetHeight; /* trigger reflow */
-    modalSuccess.style.animation = ''; 
-  }
-	else {
+      if (data.success) {
+        modalFormWrap.style.display = 'none';
+        modalSuccess.style.display = 'block';
+      } else {
         alert("There was an error submitting the form. Please try again.");
       }
     } catch (err) {
@@ -1566,6 +1440,14 @@ function initChaosMenu() {
     if (e.key === 'Escape' && isOpen) closeMenu();
   });
 }
+
+//   window.addEventListener('resize', function() {
+//     if (isOpen) drawTangledLines(progress);
+//   });
+// })();
+
+// Set logo images from single stored source
+// (function(){
 
 
 initCursor();
