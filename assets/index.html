@@ -502,7 +502,33 @@ footer {
 .modal-success {
   display: none; text-align: center; padding: 20px 0;
 }
-.modal-success .success-icon { font-size: 48px; margin-bottom: 20px; }
+.modal-success .success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(from var(--angle), #00E5FF, #7C3AED, #EC4899, #00E5FF);
+  animation: rotateBorder 3s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+
+/* inner dark circle to mask the conic bg */
+.modal-success .success-icon::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #010810;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.modal-success .success-icon svg {
+  position: relative;
+  z-index: 1;
+}
 .modal-success h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
 .modal-success p { font-size: 15px; color: var(--muted); line-height: 1.6; }
 /* RESPONSIVE */
@@ -794,7 +820,17 @@ footer {
       </form>
     </div>
     <div class="modal-success" id="modalSuccess">
-      <div class="success-icon">→</div>
+      <div class="success-icon">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 17L13 23L25 10" stroke="url(#tick-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <defs>
+      <linearGradient id="tick-grad" x1="7" y1="10" x2="25" y2="23" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00E5FF"/>
+        <stop offset="100%" stop-color="#7C3AED"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
       <h3>Message received.</h3>
       <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
     </div>
