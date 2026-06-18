@@ -710,6 +710,40 @@ footer {
 }
 
 
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+.modal-gradient-wrap {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 22px;
+  padding: 2px;
+  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
+  animation: rotateBorder 3s linear infinite;
+}
+
+.modal {
+  width: 100%;
+  padding: 52px 44px 48px;
+  border-radius: 20px;
+  background: #010810;
+  border: none;
+  position: relative;
+  transform: translateY(32px);
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.modal-overlay.open .modal { transform: translateY(0); }
+
 </style>
 </head>
 <body>
