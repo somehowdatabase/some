@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +89,6 @@ nav::before {
   width: 100%; height: 100%;
   pointer-events: none; z-index: 10; opacity: 0.5;
 }
-/*de scrollable flow */
 #line-canvas-wrap {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
@@ -108,7 +101,6 @@ nav::before {
   height: 100vh; min-height: 640px;
   display: flex; flex-direction: column; justify-content: center;
   padding: 0 52px; position: relative; overflow: hidden;
-  /* CHANGE 2: Added margin-top to shift the whole hero section down slightly */
   margin-top: 40px;
 }
 .hero-bg-glow {
@@ -181,7 +173,6 @@ nav::before {
 }
 .btn-ghost:hover { border-color: rgba(240,244,255,0.4); background: rgba(240,244,255,0.04); }
 
-/* Remove tap/click highlight flash on all interactive elements */
 * { -webkit-tap-highlight-color: transparent; }
 button, a, [role="button"] {
   -webkit-tap-highlight-color: transparent;
@@ -191,6 +182,7 @@ button, a, [role="button"] {
 button:focus, a:focus, [role="button"]:focus { outline: none; box-shadow: none; }
 .btn-primary:active { transform: translateY(0); box-shadow: none; }
 .btn-ghost:active { background: rgba(240,244,255,0.04); border-color: rgba(240,244,255,0.3); box-shadow: none; }
+
 /* MARQUEE */
 .principles-strip {
   padding: 22px 0;
@@ -260,13 +252,8 @@ section { position: relative; z-index: 3; }
 }
 .journey-step:first-child { border-top: 1px solid rgba(240,244,255,0.06); }
 .journey-step:hover { opacity: 0.75; }
-.journey-step.step-lit {
-  opacity: 1; transform: translateX(0);
-}
-.journey-step.step-lit .step-num {
-  color: var(--cyan);
-  text-shadow: 0 0 12px rgba(0,229,255,0.7);
-}
+.journey-step.step-lit { opacity: 1; transform: translateX(0); }
+.journey-step.step-lit .step-num { color: var(--cyan); text-shadow: 0 0 12px rgba(0,229,255,0.7); }
 .journey-step.step-lit .step-title {
   background: linear-gradient(90deg, var(--white), rgba(240,244,255,0.85));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -435,6 +422,17 @@ footer {
 .reveal-delay-4 { transition-delay: 0.4s; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 
+/* ─── RAINBOW BORDER ANIMATION ─────────────────── */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotateBorder {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
 /* ─── CONTACT MODAL ─────────────────────────────── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
@@ -445,21 +443,36 @@ footer {
   transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+/* Rainbow spinning wrapper */
+.modal-gradient-wrap {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  border-radius: 22px;
+  padding: 2px;
+  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
+  animation: rotateBorder 3s linear infinite;
+}
+
 .modal {
-  width: 100%; max-width: 640px;
-  padding: 64px 56px;
-  border: 1px solid rgba(240,244,255,0.08);
+  width: 100%;
+  padding: 52px 44px 48px;
+  border-radius: 20px;
   background: #010810;
+  border: none;
   position: relative;
   transform: translateY(32px);
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 .modal-overlay.open .modal { transform: translateY(0); }
+
 .modal-close {
-  position: absolute; top: 28px; right: 28px;
+  position: absolute; top: 24px; right: 24px;
   background: none; border: none;
   color: rgba(240,244,255,0.4); font-size: 24px;
   cursor: none; line-height: 1; transition: color 0.3s;
+  font-family: 'Space Grotesk', sans-serif;
 }
 .modal-close:hover { color: var(--white); }
 .modal-eyebrow {
@@ -499,38 +512,53 @@ footer {
   margin-top: 8px;
 }
 .form-note { font-size: 12px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
+
+/* ─── SUCCESS STATE ─────────────────────────────── */
 .modal-success {
-  display: none; text-align: center; padding: 20px 0;
+  display: none;
+  text-align: center;
+  padding: 20px 0;
 }
-.modal-success .success-icon {
-  width: 72px;
-  height: 72px;
+
+/* Spinning rainbow ring around checkmark */
+.check-ring-wrap {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  padding: 2px;
-  background: conic-gradient(from var(--angle), #00E5FF, #7C3AED, #EC4899, #00E5FF);
+  padding: 2.5px;
+  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
   animation: rotateBorder 3s linear infinite;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 28px;
+  margin: 0 auto 32px;
 }
-
-/* inner dark circle to mask the conic bg */
-.modal-success .success-icon::before {
-  content: '';
-  position: absolute;
-  inset: 2px;
+.check-ring-inner {
+  width: 100%;
+  height: 100%;
   background: #010810;
   border-radius: 50%;
-  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-success .success-icon svg {
-  position: relative;
-  z-index: 1;
+.modal-success h3 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #00E5FF, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.modal-success h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
-.modal-success p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+.modal-success p {
+  font-size: 15px;
+  color: rgba(240,244,255,0.42);
+  line-height: 1.7;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 18px 20px; }
@@ -580,16 +608,14 @@ footer {
   .section-sub { margin-bottom: 40px; font-size: 15px; }
   footer { flex-direction: column; gap: 20px; align-items: flex-start; }
   .footer-right { align-items: flex-start; }
-  .modal { padding: 32px 22px; margin: 12px; max-height: 90vh; overflow-y: auto; }
+  .modal-gradient-wrap { margin: 12px; max-height: 90vh; overflow-y: auto; border-radius: 18px; }
+  .modal { padding: 32px 22px; border-radius: 16px; }
   .modal h2 { font-size: clamp(22px, 6vw, 34px); margin-bottom: 24px; }
   .form-row { grid-template-columns: 1fr; }
   .form-submit { flex-direction: column; gap: 12px; align-items: flex-start; }
   .form-submit .btn-primary { width: 100%; justify-content: center; }
-  .cursor, .cursor-ring {
-  display: none !important;
-  }
+  .cursor, .cursor-ring { display: none !important; }
 }
-
 
 /* ── CHAOS TRIGGER ── */
 .chaos-trigger {
@@ -608,13 +634,8 @@ footer {
   width: 20px; height: 20px;
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
 }
-/* When open, rotate arrow to point up */
-.chaos-trigger.active .ct-svg {
-  transform: rotate(180deg);
-}
-.chaos-trigger.active .ct-path-1 {
-  stroke: var(--cyan);
-}
+.chaos-trigger.active .ct-svg { transform: rotate(180deg); }
+.chaos-trigger.active .ct-path-1 { stroke: var(--cyan); }
 
 /* ── CHAOS MENU OVERLAY ── */
 .chaos-menu {
@@ -622,8 +643,6 @@ footer {
   pointer-events: none;
   overflow: hidden;
 }
-
-/* The ink-burst circle that expands from top-right */
 .chaos-menu-ink {
   position: absolute;
   top: 28px; right: 28px;
@@ -631,37 +650,24 @@ footer {
   background: #010C1A;
   border-radius: 50%;
   transform: translate(50%, -50%);
-  transition: width 0.7s cubic-bezier(0.16,1,0.3,1),
-              height 0.7s cubic-bezier(0.16,1,0.3,1);
+  transition: width 0.7s cubic-bezier(0.16,1,0.3,1), height 0.7s cubic-bezier(0.16,1,0.3,1);
 }
-.chaos-menu.open .chaos-menu-ink {
-  width: 300vmax; height: 300vmax;
-}
+.chaos-menu.open .chaos-menu-ink { width: 300vmax; height: 300vmax; }
 .chaos-menu.open { pointer-events: all; }
-
-/* Radiating lines */
-.chaos-menu-lines {
-  position: absolute; inset: 0;
-  pointer-events: none;
-}
+.chaos-menu-lines { position: absolute; inset: 0; pointer-events: none; }
 .chaos-line {
   position: absolute;
   top: 28px; right: 28px;
-  width: 1px;
-  height: 0;
+  width: 1px; height: 0;
   background: linear-gradient(to bottom, rgba(0,229,255,0.5), transparent);
   transform-origin: top center;
   transition: height 0s;
   opacity: 0;
 }
 .chaos-menu.open .chaos-line {
-  height: 100vmax;
-  opacity: 1;
-  transition: height 0.6s cubic-bezier(0.16,1,0.3,1),
-              opacity 0.4s ease;
+  height: 100vmax; opacity: 1;
+  transition: height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
 }
-
-/* Menu content */
 .chaos-menu-content {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
@@ -671,17 +677,12 @@ footer {
   transform: translateY(24px);
   transition: opacity 0.5s 0.3s, transform 0.6s 0.25s cubic-bezier(0.16,1,0.3,1);
 }
-.chaos-menu.open .chaos-menu-content {
-  opacity: 1; transform: translateY(0);
-}
-
-
+.chaos-menu.open .chaos-menu-content { opacity: 1; transform: translateY(0); }
 .chaos-menu-label {
   font-family: 'Space Mono', monospace;
   font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--cyan); margin-bottom: 56px; opacity: 0.7;
 }
-
 .chaos-nav-items { list-style: none; margin-bottom: 40px; }
 .chaos-nav-item {
   overflow: hidden;
@@ -689,29 +690,20 @@ footer {
 }
 .chaos-nav-item:first-child { border-top: 1px solid rgba(240,244,255,0.06); }
 .chaos-nav-link {
-  display: block;
-  padding: 18px 0;
+  display: block; padding: 18px 0;
   font-size: clamp(28px, 4vw, 60px);
   font-weight: 700; letter-spacing: -0.04em;
   color: var(--white); text-decoration: none; cursor: none;
   transform: translateY(110%);
   transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), color 0.3s;
 }
-.chaos-menu.open .chaos-nav-link {
-  transform: translateY(0);
-}
-
+.chaos-menu.open .chaos-nav-link { transform: translateY(0); }
 .chaos-nav-item:nth-child(1) .chaos-nav-link { transition-delay: 0.32s, 0s; }
 .chaos-nav-item:nth-child(2) .chaos-nav-link { transition-delay: 0.38s, 0s; }
 .chaos-nav-item:nth-child(3) .chaos-nav-link { transition-delay: 0.44s, 0s; }
 .chaos-nav-item:nth-child(4) .chaos-nav-link { transition-delay: 0.50s, 0s; }
-
-
 .chaos-nav-link:hover { color: var(--cyan); }
-
-.chaos-menu-footer {
-  display: flex; flex-direction: column; gap: 28px; align-items: flex-start;
-}
+.chaos-menu-footer { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
 .chaos-menu-cta {
   font-size: 13px; color: rgba(240,244,255,0.4);
   font-family: 'Space Mono', monospace; letter-spacing: 0.1em; line-height: 1.8;
@@ -721,55 +713,16 @@ footer {
   transition: opacity 0.3s; cursor: none; display: block; margin-top: 4px;
 }
 .chaos-menu-cta a:hover { opacity: 0.7; }
-
-/* Scramble number decoration */
 .chaos-item-num {
   font-family: 'Space Mono', monospace;
   font-size: 12px; color: var(--cyan);
   letter-spacing: 0.1em; margin-right: 24px;
   opacity: 0.5; vertical-align: super;
 }
-
 @media (max-width: 900px) {
   .chaos-menu-content { padding: 100px 24px 60px; }
   .chaos-nav-link { font-size: clamp(28px, 8vw, 52px); padding: 20px 0; }
 }
-
-
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes rotateBorder {
-  0%   { --angle: 0deg; }
-  100% { --angle: 360deg; }
-}
-
-.modal-gradient-wrap {
-  position: relative;
-  max-width: 420px;
-  width: 100%;
-  border-radius: 22px;
-  padding: 2px;
-  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
-  animation: rotateBorder 3s linear infinite;
-}
-
-.modal {
-  width: 100%;
-  padding: 52px 44px 48px;
-  border-radius: 20px;
-  background: #010810;
-  border: none;
-  position: relative;
-  transform: translateY(32px);
-  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-
-.modal-overlay.open .modal { transform: translateY(0); }
-
 </style>
 </head>
 <body>
@@ -778,78 +731,76 @@ footer {
 <div class="cursor-ring" id="cursor-ring"></div>
 <div id="line-canvas-wrap"><canvas id="line-canvas"></canvas></div>
 
-
 <!-- CONTACT MODAL -->
-<div class="modal-overlay" id="contactModal" ...>
+<div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-label="Start a project">
   <div class="modal-gradient-wrap">
     <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-    <div id="modalFormWrap">
-      <div class="modal-eyebrow">Let's work together</div>
-      <h2>Tell us where<br>you are right now.</h2>
-      <form class="modal-form" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">Your name</label>
-            <input type="text" id="fname" name="name" placeholder="Alex Johnson" required>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div id="modalFormWrap">
+        <div class="modal-eyebrow">Let's work together</div>
+        <h2>Tell us where<br>you are right now.</h2>
+        <form class="modal-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Your name</label>
+              <input type="text" id="fname" name="name" placeholder="Alex Johnson" required>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" name="email" placeholder="alex@company.com" required>
+            </div>
           </div>
           <div class="form-group">
-            <label for="femail">Email</label>
-            <input type="email" id="femail" name="email" placeholder="alex@company.com" required>
+            <label for="fproject">What do you need?</label>
+            <select id="fproject" name="project_type">
+              <option value="" disabled selected>Select a service</option>
+              <option value="website">Business website</option>
+              <option value="ecommerce">E-commerce experience</option>
+              <option value="brand">Personal brand / portfolio</option>
+              <option value="custom">Custom digital product</option>
+              <option value="other">Something else entirely</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmessage">Describe the chaos</label>
+            <textarea id="fmessage" name="message" rows="4" placeholder="Tell us what's going on — the problem, the goal, where you're stuck. The messier the better."></textarea>
+          </div>
+          <div class="form-submit">
+            <span class="form-note">We respond within 48h</span>
+            <button type="submit" class="btn-primary" id="formSubmitBtn">Send it →</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-success" id="modalSuccess">
+        <div class="check-ring-wrap">
+          <div class="check-ring-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L13 23L25 10" stroke="url(#tick-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="tick-grad" x1="7" y1="10" x2="25" y2="23" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#00E5FF"/>
+                  <stop offset="100%" stop-color="#7C3AED"/>
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
-        <div class="form-group">
-          <label for="fproject">What do you need?</label>
-          <select id="fproject" name="project_type">
-            <option value="" disabled selected>Select a service</option>
-            <option value="website">Business website</option>
-            <option value="ecommerce">E-commerce experience</option>
-            <option value="brand">Personal brand / portfolio</option>
-            <option value="custom">Custom digital product</option>
-            <option value="other">Something else entirely</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="fmessage">Describe the chaos</label>
-          <textarea id="fmessage" name="message" rows="4" placeholder="Tell us what's going on — the problem, the goal, where you're stuck. The messier the better."></textarea>
-        </div>
-        <div class="form-submit">
-          <span class="form-note">We respond within 48h</span>
-          <button type="submit" class="btn-primary" id="formSubmitBtn">Send it →</button>
-        </div>
-      </form>
+        <h3>Message received.</h3>
+        <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
+      </div>
     </div>
-    <div class="modal-success" id="modalSuccess">
-      <div class="success-icon">
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7 17L13 23L25 10" stroke="url(#tick-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <defs>
-      <linearGradient id="tick-grad" x1="7" y1="10" x2="25" y2="23" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#00E5FF"/>
-        <stop offset="100%" stop-color="#7C3AED"/>
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
-      <h3>Message received.</h3>
-      <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
-    </div>
-	</div>
   </div>
 </div>
-
 
 <!-- NAV -->
 <nav>
   <img src="./somehow-logo.PNG" class="nav-logo-img" alt="Somehow" onclick="window.scrollTo({top:0,behavior:'smooth'});" style="cursor:none;">
   <button class="chaos-trigger" id="chaosTrigger" aria-label="Open menu">
-  <svg class="ct-svg" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="ct-path-1" d="M4 6 L10 13 L16 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
+    <svg class="ct-svg" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="ct-path-1" d="M4 6 L10 13 L16 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 </nav>
-
-
 
 <!-- HERO -->
 <section id="hero">
@@ -870,7 +821,6 @@ footer {
   </div>
 </section>
 
-
 <!-- MARQUEE -->
 <div class="principles-strip">
   <div class="marquee">
@@ -882,8 +832,6 @@ footer {
     </div>
   </div>
 </div>
-
-
 
 <!-- PROBLEM -->
 <section id="problem">
@@ -907,7 +855,6 @@ footer {
     </div>
   </div>
 </section>
-
 
 <!-- APPROACH -->
 <section id="approach">
@@ -957,7 +904,6 @@ footer {
   </div>
 </section>
 
-
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header">
@@ -991,7 +937,6 @@ footer {
     </div>
   </div>
 </section>
-
 
 <!-- PROCESS -->
 <section id="process">
@@ -1027,7 +972,6 @@ footer {
   </div>
 </section>
 
-
 <!-- WHY -->
 <section id="why">
   <h2 class="reveal">The path is rarely<br>straight. Neither is<br>great work.</h2>
@@ -1059,7 +1003,6 @@ footer {
   </div>
 </section>
 
-
 <!-- MANIFESTO -->
 <section id="manifesto">
   <div class="manifesto-glow"></div>
@@ -1070,7 +1013,6 @@ footer {
     <p class="reveal reveal-delay-3">So we built Somehow. <strong>A studio dedicated to turning complexity into clarity.</strong> To finding the way forward when no path is obvious. To building things that don't just look remarkable — but work.</p>
   </div>
 </section>
-
 
 <!-- PRICING -->
 <section id="pricing">
@@ -1153,7 +1095,6 @@ footer {
   </div>
 </section>
 
-
 <!-- FINAL CTA -->
 <section id="final-cta">
   <div class="final-glow"></div>
@@ -1168,7 +1109,6 @@ footer {
   </div>
 </section>
 
-
 <!-- FOOTER -->
 <footer>
   <div>
@@ -1180,7 +1120,6 @@ footer {
     <div class="footer-copy">© 2026 Somehow pro. All rights reserved.</div>
   </div>
 </footer>
-
 
 <!-- CHAOS MENU -->
 <div class="chaos-menu" id="chaosMenu">
@@ -1220,39 +1159,28 @@ footer {
   </div>
 </div>
 
-
 <script type="module">
 function initCursor() {
   const cursor = document.getElementById('cursor');
   const cursorRing = document.getElementById('cursor-ring');
   if (!cursor || !cursorRing) return;
-
   let mx = 0, my = 0, rx = 0, ry = 0;
-
   document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
   });
-
   (function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    cursorRing.style.left = rx + 'px';
-    cursorRing.style.top = ry + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
     requestAnimationFrame(animRing);
   })();
-
   document.querySelectorAll('a, button, [role="button"]').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      cursorRing.style.width = '52px';
-      cursorRing.style.height = '52px';
+      cursorRing.style.width = '52px'; cursorRing.style.height = '52px';
       cursorRing.style.borderColor = 'rgba(0,229,255,0.7)';
     });
     el.addEventListener('mouseleave', () => {
-      cursorRing.style.width = '36px';
-      cursorRing.style.height = '36px';
+      cursorRing.style.width = '36px'; cursorRing.style.height = '36px';
       cursorRing.style.borderColor = 'rgba(0,229,255,0.4)';
     });
   });
@@ -1261,25 +1189,15 @@ function initCursor() {
 function initLineCanvas() {
   const canvas = document.getElementById('line-canvas');
   if (!canvas) return;
-
   const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
-
   let scrollY = 0;
   window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-
   function lerp(a, b, t) { return a + (b - a) * t; }
   function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
-
   const SEGMENTS = 24;
-
   function buildPath(progress) {
     const W = canvas.width, H = canvas.height, cx = W * 0.72;
     const cleanPoints = [], chaoticPoints = [], seed = 42;
@@ -1292,66 +1210,44 @@ function initLineCanvas() {
       chaoticPoints.push({ x: cx + n1 * W * 0.28 * cm + n2 * W * 0.12 * cm, y: H * t + n2 * H * 0.04 * cm });
     }
     const p = easeInOut(Math.min(Math.max(progress, 0), 1));
-    return cleanPoints.map((c, i) => ({
-      x: lerp(chaoticPoints[i].x, c.x, p),
-      y: lerp(chaoticPoints[i].y, c.y, p)
-    }));
+    return cleanPoints.map((c, i) => ({ x: lerp(chaoticPoints[i].x, c.x, p), y: lerp(chaoticPoints[i].y, c.y, p) }));
   }
-
   function drawLine() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const maxScroll = document.body.scrollHeight - window.innerHeight;
     const sp = maxScroll > 0 ? scrollY / maxScroll : 0;
     const points = buildPath(sp);
     ctx.save();
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.shadowBlur = 16;
-    ctx.shadowColor = sp > 0.7 ? '#00E5FF' : '#7C3AED';
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.shadowBlur = 16; ctx.shadowColor = sp > 0.7 ? '#00E5FF' : '#7C3AED';
     if (points.length > 1) {
-      const g = ctx.createLinearGradient(points[0].x, points[0].y, points[points.length - 1].x, points[points.length - 1].y);
-      g.addColorStop(0, 'rgba(0,229,255,0.9)');
-      g.addColorStop(0.3, 'rgba(59,130,246,0.8)');
-      g.addColorStop(0.65, 'rgba(124,58,237,0.8)');
-      g.addColorStop(1, 'rgba(236,72,153,0.9)');
+      const g = ctx.createLinearGradient(points[0].x, points[0].y, points[points.length-1].x, points[points.length-1].y);
+      g.addColorStop(0, 'rgba(0,229,255,0.9)'); g.addColorStop(0.3, 'rgba(59,130,246,0.8)');
+      g.addColorStop(0.65, 'rgba(124,58,237,0.8)'); g.addColorStop(1, 'rgba(236,72,153,0.9)');
       ctx.strokeStyle = g;
     }
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
+    ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length - 1; i++) {
-      const mx2 = (points[i].x + points[i + 1].x) / 2;
-      const my2 = (points[i].y + points[i + 1].y) / 2;
+      const mx2 = (points[i].x + points[i+1].x) / 2;
+      const my2 = (points[i].y + points[i+1].y) / 2;
       ctx.quadraticCurveTo(points[i].x, points[i].y, mx2, my2);
     }
-    ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    ctx.lineTo(points[points.length-1].x, points[points.length-1].y);
     ctx.stroke();
     if (sp > 0.6) {
-      const last = points[points.length - 1];
-      const prev = points[points.length - 3];
+      const last = points[points.length-1]; const prev = points[points.length-3];
       const alpha = Math.min((sp - 0.6) / 0.3, 1);
       const angle = Math.atan2(last.y - prev.y, last.x - prev.x);
       const len = 16;
-      ctx.save();
-      ctx.globalAlpha = alpha;
-      ctx.translate(last.x, last.y);
-      ctx.rotate(angle);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(-len, -len * 0.5);
-      ctx.moveTo(0, 0);
-      ctx.lineTo(-len, len * 0.5);
-      ctx.strokeStyle = '#00E5FF';
-      ctx.lineWidth = 2;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#00E5FF';
-      ctx.stroke();
-      ctx.restore();
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.translate(last.x, last.y); ctx.rotate(angle);
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-len, -len*0.5);
+      ctx.moveTo(0,0); ctx.lineTo(-len, len*0.5);
+      ctx.strokeStyle = '#00E5FF'; ctx.lineWidth = 2;
+      ctx.shadowBlur = 10; ctx.shadowColor = '#00E5FF'; ctx.stroke(); ctx.restore();
     }
-    ctx.restore();
-    requestAnimationFrame(drawLine);
+    ctx.restore(); requestAnimationFrame(drawLine);
   }
-
   drawLine();
 }
 
@@ -1369,7 +1265,6 @@ function initModal() {
     modalFormWrap.style.display = '';
     modalSuccess.style.display = 'none';
   }
-
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
@@ -1389,10 +1284,8 @@ function initModal() {
     row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(); });
   });
 
-  // --- UPDATED FORM SUBMISSION LOGIC (PostgreSQL + Email) ---
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const name = document.getElementById('fname').value.trim();
     const email = document.getElementById('femail').value.trim();
     const project = document.getElementById('fproject').value;
@@ -1404,24 +1297,14 @@ function initModal() {
       return;
     }
 
-    // !!! IMPORTANT: Change this URL to your deployed Render Backend URL !!!
-    // For local testing, keep it as 'hhttps://por-4.onrender.com'
-    const API_URL = 'https://por-4.onrender.com/api/submit-lead'; 
-
+    const API_URL = 'https://por-4.onrender.com/api/submit-lead';
     try {
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name, 
-          email, 
-          project_type: project, 
-          message 
-        })
+        body: JSON.stringify({ name, email, project_type: project, message })
       });
-
       const data = await response.json();
-
       if (data.success) {
         modalFormWrap.style.display = 'none';
         modalSuccess.style.display = 'block';
@@ -1460,9 +1343,7 @@ function initChaosMenu() {
   const trigger = document.getElementById('chaosTrigger');
   const menu = document.getElementById('chaosMenu');
   if (!trigger || !menu) return;
-
   let isOpen = false;
-
   const linesEl = document.getElementById('chaosLines');
   if (linesEl) {
     for (let i = 0; i < 16; i++) {
@@ -1473,54 +1354,20 @@ function initChaosMenu() {
       linesEl.appendChild(line);
     }
   }
-
-  function openMenu() {
-    isOpen = true;
-    menu.classList.add('open');
-    trigger.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    isOpen = false;
-    menu.classList.remove('open');
-    trigger.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  trigger.addEventListener('click', () => {
-    isOpen ? closeMenu() : openMenu();
-  });
-
+  function openMenu() { isOpen = true; menu.classList.add('open'); trigger.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { isOpen = false; menu.classList.remove('open'); trigger.classList.remove('active'); document.body.style.overflow = ''; }
+  trigger.addEventListener('click', () => { isOpen ? closeMenu() : openMenu(); });
   document.querySelectorAll('.chaos-close-menu').forEach(el => {
     el.addEventListener('click', e => {
       const href = el.getAttribute('href');
       if (href && href.startsWith('#') && href.length > 1) {
-        e.preventDefault();
-        closeMenu();
-        setTimeout(() => {
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        }, 500);
-      } else {
-        closeMenu();
-      }
+        e.preventDefault(); closeMenu();
+        setTimeout(() => { const target = document.querySelector(href); if (target) target.scrollIntoView({ behavior: 'smooth' }); }, 500);
+      } else { closeMenu(); }
     });
   });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && isOpen) closeMenu();
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeMenu(); });
 }
-
-//   window.addEventListener('resize', function() {
-//     if (isOpen) drawTangledLines(progress);
-//   });
-// })();
-
-// Set logo images from single stored source
-// (function(){
-
 
 initCursor();
 initModal();
