@@ -748,12 +748,13 @@ footer {
 }
 
 /* INSTAGRAM ICON — extreme right */
+/* INSTAGRAM ICON — extreme right */
 .chaos-ig-btn {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: radial-gradient(circle farthest-corner at 35% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
   border: none;
   display: inline-flex;
   align-items: center;
@@ -777,14 +778,11 @@ footer {
     transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.64s;
 }
 .chaos-ig-btn:hover {
-  transform: scale(1.18) rotate(-6deg) !important;
-  transition:
-    transform 0.28s cubic-bezier(0.16,1,0.3,1) !important,
-    opacity 0.2s !important;
-  box-shadow: 0 0 20px rgba(238,42,123,0.6), 0 0 40px rgba(98,40,215,0.3);
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 20px rgba(214, 36, 159, 0.6), 0 0 40px rgba(40, 90, 235, 0.3);
 }
 .chaos-ig-btn:active {
-  transform: scale(0.88) rotate(3deg) !important;
+  transform: scale(0.9) !important;
   transition: transform 0.1s ease !important;
 }
 .chaos-ig-btn svg {
@@ -793,23 +791,23 @@ footer {
 }
 .chaos-ig-ripple {
   position: absolute;
-  inset: -2px;
-  border-radius: 13px;
-  border: 1.5px solid rgba(238,42,123,0);
+  inset: -4px;
+  border-radius: 16px;
+  border: 2px solid rgba(253, 73, 89, 0);
   pointer-events: none;
 }
 .chaos-menu.open .chaos-ig-ripple {
-  animation: igPulse 2.4s ease-out 1.4s infinite;
+  animation: igPulse 2s ease-out 1.4s infinite;
 }
 @keyframes igPulse {
-  0%   { inset: -2px; border-color: rgba(238,42,123,0.75); border-radius: 13px; }
-  100% { inset: -14px; border-color: rgba(238,42,123,0); border-radius: 25px; }
+  0%   { inset: -4px; border-color: rgba(253, 73, 89, 0.6); border-radius: 16px; }
+  100% { inset: -14px; border-color: rgba(253, 73, 89, 0); border-radius: 26px; }
 }
 
 @media (max-width: 900px) {
   .chaos-menu-content { padding: 100px 24px 60px; }
   .chaos-nav-link { font-size: clamp(28px, 8vw, 52px); padding: 20px 0; }
-  .chaos-ig-btn { width: 36px; height: 36px; border-radius: 10px; }
+  .chaos-ig-btn { width: 38px; height: 38px; border-radius: 11px; }
   .chaos-ig-btn svg { width: 18px; height: 18px; }
 }
 </style>
@@ -1245,20 +1243,21 @@ footer {
         <!-- email + instagram icon pushed to extreme right -->
         <div class="chaos-cta-row-inner">
           <a href="#" class="open-modal chaos-close-menu">hello@somehow.pro &rarr;</a>
-          <a
-            href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="chaos-ig-btn"
-            aria-label="Follow on Instagram"
-          >
-            <div class="chaos-ig-ripple"></div>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="1.8"/>
-              <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8"/>
-              <circle cx="17.5" cy="6.5" r="1.1" fill="white"/>
-            </svg>
-          </a>
+          <!-- INSTAGRAM ICON — extreme right -->
+<a
+  href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="chaos-ig-btn"
+  aria-label="Follow on Instagram"
+>
+  <div class="chaos-ig-ripple"></div>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/>
+    <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/>
+    <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+  </svg>
+</a>
         </div>
       </div>
       <button class="btn-primary open-modal chaos-close-menu" style="font-size:13px;padding:12px 28px;">Start a Project &rarr;</button>
