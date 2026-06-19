@@ -153,6 +153,73 @@ nav::before {
 }
 @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
+
+/* ── INSTAGRAM ICON IN CHAOS MENU ── */
+.chaos-ig-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  border: none;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  transform: scale(0.4) rotate(-30deg) translateY(20px);
+  transition:
+    opacity 0s,
+    transform 0s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  z-index: 210;
+}
+.chaos-menu.open .chaos-ig-btn {
+  opacity: 1;
+  transform: scale(1) rotate(0deg) translateY(0);
+  transition:
+    opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.62s,
+    transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.58s;
+}
+.chaos-ig-btn:hover {
+  transform: scale(1.13) rotate(-4deg) !important;
+  box-shadow: 0 0 24px rgba(238,42,123,0.55), 0 0 48px rgba(98,40,215,0.3);
+  transition:
+    transform 0.3s cubic-bezier(0.16,1,0.3,1) !important,
+    box-shadow 0.3s ease !important,
+    opacity 0.3s !important;
+}
+.chaos-ig-btn:active {
+  transform: scale(0.92) rotate(2deg) !important;
+  transition: transform 0.1s ease !important;
+}
+.chaos-ig-btn svg {
+  width: 26px;
+  height: 26px;
+}
+.chaos-ig-ripple {
+  position: absolute;
+  inset: -3px;
+  border-radius: 19px;
+  border: 1.5px solid rgba(238,42,123,0.0);
+  pointer-events: none;
+}
+.chaos-menu.open .chaos-ig-ripple {
+  animation: igPulse 2.2s ease-out 1.3s infinite;
+}
+@keyframes igPulse {
+  0%   { inset: -3px; border-color: rgba(238,42,123,0.7); border-radius: 19px; }
+  100% { inset: -18px; border-color: rgba(238,42,123,0); border-radius: 34px; }
+}
+@media (max-width: 900px) {
+  .chaos-ig-btn { bottom: 52px; right: 20px; }
+}
+
+  
 /* BUTTONS */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1157,6 +1224,19 @@ footer {
       <button class="btn-primary open-modal chaos-close-menu" style="font-size:13px;padding:12px 28px;">Start a Project &rarr;</button>
     </div>
   </div>
+  href="https://www.instagram.com/YOUR_INSTAGRAM_HANDLE"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="chaos-ig-btn"
+  aria-label="Follow on Instagram"
+>
+  <div class="chaos-ig-ripple"></div>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="1.8"/>
+    <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8"/>
+    <circle cx="17.5" cy="6.5" r="1.1" fill="white"/>
+  </svg>
+</a>
 </div>
 
 <script type="module">
