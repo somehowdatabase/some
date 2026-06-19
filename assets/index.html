@@ -154,9 +154,18 @@ nav::before {
 @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
 
+
+@keyframes igPulse {
+  0%   { inset: -3px; border-color: rgba(238,42,123,0.7); border-radius: 19px; }
+  100% { inset: -18px; border-color: rgba(238,42,123,0); border-radius: 34px; }
+}
+@media (max-width: 900px) {
+  .chaos-ig-btn { bottom: 52px; right: 20px; }
+}
+
 /* ── INSTAGRAM ICON IN CHAOS MENU ── */
 .chaos-ig-btn {
-  position: absolute;
+  position: right;
   bottom: 60px;
   right: 24px;
   width: 52px;
@@ -211,13 +220,7 @@ nav::before {
 .chaos-menu.open .chaos-ig-ripple {
   animation: igPulse 2.2s ease-out 1.3s infinite;
 }
-@keyframes igPulse {
-  0%   { inset: -3px; border-color: rgba(238,42,123,0.7); border-radius: 19px; }
-  100% { inset: -18px; border-color: rgba(238,42,123,0); border-radius: 34px; }
-}
-@media (max-width: 900px) {
-  .chaos-ig-btn { bottom: 52px; right: 20px; }
-}
+
 
   
 /* BUTTONS */
@@ -1214,9 +1217,7 @@ footer {
         <a href="#proof" class="chaos-nav-link chaos-close-menu">
           <span class="chaos-item-num">04</span>Results
         </a>
-      </li>
-    </ul>
-     <a href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
+        <a href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
   target="_blank"
   rel="noopener noreferrer"
   class="chaos-ig-btn"
@@ -1229,6 +1230,9 @@ footer {
     <circle cx="17.5" cy="6.5" r="1.1" fill="white"/>
   </svg>
 </a>
+      </li>
+    </ul>
+     
     <div class="chaos-menu-footer">
       <div class="chaos-menu-cta">
         Ready to start?<br>
