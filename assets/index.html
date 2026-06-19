@@ -751,29 +751,34 @@ footer {
    Instagram Button
 ========================= */
 
+/* =========================
+   Instagram Button
+========================= */
+
 .chaos-ig-btn {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
-
-  /* Navy Blue */
-  background: #001F54;
-
-  border: 1px solid rgba(0, 31, 84, 0.4);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  border-radius: 12px;
+
+  /* Navy Blue Background */
+  background: #001f54;
+
+  border: 1px solid rgba(0, 229, 255, 0.15);
+
   text-decoration: none;
-  cursor: pointer;
+  overflow: hidden;
 
   /* Hidden Initially */
   opacity: 0;
-  transform: scale(0.3) rotate(-45deg);
+  transform: scale(0.3);
 
-  /* Show After 1.5s */
-  animation: instaReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* Show After 1.5 Seconds */
+  animation: instaReveal 0.8s ease forwards;
   animation-delay: 1.5s;
 
   box-shadow:
@@ -781,57 +786,55 @@ footer {
     0 0 20px rgba(0, 31, 84, 0.2);
 
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+    transform .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
 }
 
-/* SVG Icon */
+/* SVG */
 .chaos-ig-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
-/* Force Entire Icon Navy Blue */
-.chaos-ig-btn svg *,
-.chaos-ig-btn svg rect,
-.chaos-ig-btn svg path,
-.chaos-ig-btn svg circle {
-  stroke: #001F54 !important;
-  fill: transparent;
+/* Camera Outline */
+.chaos-ig-btn rect,
+.chaos-ig-btn circle {
+  fill: none;
+  stroke: #00e5ff;
+  stroke-width: 2;
 }
 
-/* Camera Dot */
-.chaos-ig-btn svg circle:last-child {
-  fill: #001F54 !important;
+/* Small Top Dot */
+.chaos-ig-btn .ig-dot {
+  fill: #00e5ff;
+  stroke: none;
 }
 
 /* Hover */
 .chaos-ig-btn:hover {
   transform: scale(1.1);
 
-  background: #002b73;
-
   box-shadow:
-    0 0 20px rgba(0, 31, 84, 0.8),
-    0 0 40px rgba(0, 31, 84, 0.5);
+    0 0 15px rgba(0, 229, 255, 0.5),
+    0 0 35px rgba(0, 229, 255, 0.25);
 }
 
 /* Reveal Animation */
 @keyframes instaReveal {
   0% {
     opacity: 0;
-    transform: scale(0.3) rotate(-45deg);
+    transform: scale(0.3);
   }
 
-  60% {
+  70% {
     opacity: 1;
-    transform: scale(1.08) rotate(5deg);
+    transform: scale(1.08);
   }
 
   100% {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
   }
 }
 
