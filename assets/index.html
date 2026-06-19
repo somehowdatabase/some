@@ -433,6 +433,10 @@ footer {
   100% { --angle: 360deg; }
 }
 
+/* REMOVED RAINBOW ANIMATION */
+/* @property --angle ... */
+/* @keyframes rotateBorder ... */
+
 /* CONTACT MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
@@ -444,22 +448,15 @@ footer {
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
 
-.modal-gradient-wrap {
-  position: relative;
+/* Removed the gradient wrapper layer */
+.modal {
   max-width: 480px;
   width: calc(100% - 32px);
-  border-radius: 20px;
-  padding: 2px;
-  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
-  animation: rotateBorder 3s linear infinite;
-}
-
-.modal {
-  width: 100%;
   padding: 40px 36px 36px;
   border-radius: 18px;
   background: #010810;
-  border: none;
+  border: 1px solid rgba(0, 229, 255, 0.4); /* Solid Cyan border */
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.08); /* Very subtle glow */
   position: relative;
   transform: translateY(32px);
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
@@ -512,10 +509,6 @@ footer {
   margin-top: 4px;
 }
 .form-note { font-size: 11px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
-
-/* Remove property definitions if they are no longer used elsewhere */
-/* @property --angle ... */
-/* @keyframes rotateBorder ... */
 
 /* SUCCESS STATE - compact */
 .modal-success {
@@ -862,7 +855,6 @@ footer {
 
 <!-- CONTACT MODAL -->
 <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-label="Start a project">
-  <div class="modal-gradient-wrap">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Close">×</button>
       <div id="modalFormWrap">
@@ -912,7 +904,6 @@ footer {
         <p>We'll be in touch within 48 hours.<br>The path forward starts here.</p>
       </div>
     </div>
-  </div>
 </div>
 
 <!-- NAV -->
