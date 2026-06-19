@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/somehow-updated.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +58,7 @@ nav::before {
   pointer-events: none;
 }
 .nav-logo-img {
-  height: 56px; width: auto;
+  height: 72px; width: auto;
   position: relative; z-index: 1;
   transition: opacity 0.2s;
   -webkit-tap-highlight-color: transparent;
@@ -98,7 +99,6 @@ nav::before {
 
 /* HERO */
 #hero {
-  /* height: 100svh; */
   min-height: 640px;
   display: flex; flex-direction: column; justify-content: center;
   padding: 0 52px; position: relative; overflow: hidden;
@@ -406,7 +406,7 @@ footer {
   border-top: 1px solid rgba(240,244,255,0.06);
   display: flex; justify-content: space-between; align-items: center;
 }
-.footer-logo-img { height: 44px; width: auto; opacity: 0.8; -webkit-tap-highlight-color: transparent; outline: none; transition: opacity 0.2s; display: block; }
+.footer-logo-img { height: 56px; width: auto; opacity: 0.8; -webkit-tap-highlight-color: transparent; outline: none; transition: opacity 0.2s; display: block; }
 .footer-logo-img:hover { opacity: 1; }
 .footer-tagline { font-size: 11px; font-family: 'Space Mono', monospace; color: rgba(240,244,255,0.28); letter-spacing: 0.1em; margin-top: 6px; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
@@ -437,8 +437,8 @@ footer {
 /* CONTACT MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,7,15,0.96);
-  backdrop-filter: blur(20px);
+  background: rgba(0,7,15,0.88);
+  backdrop-filter: blur(16px);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
   transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1);
@@ -447,9 +447,9 @@ footer {
 
 .modal-gradient-wrap {
   position: relative;
-  max-width: 520px;
-  width: 100%;
-  border-radius: 22px;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  border-radius: 20px;
   padding: 2px;
   background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
   animation: rotateBorder 3s linear infinite;
@@ -457,8 +457,8 @@ footer {
 
 .modal {
   width: 100%;
-  padding: 52px 44px 48px;
-  border-radius: 20px;
+  padding: 40px 36px 36px;
+  border-radius: 18px;
   background: #010810;
   border: none;
   position: relative;
@@ -468,9 +468,9 @@ footer {
 .modal-overlay.open .modal { transform: translateY(0); }
 
 .modal-close {
-  position: absolute; top: 24px; right: 24px;
+  position: absolute; top: 16px; right: 20px;
   background: none; border: none;
-  color: rgba(240,244,255,0.4); font-size: 24px;
+  color: rgba(240,244,255,0.4); font-size: 22px;
   cursor: none; line-height: 1; transition: color 0.3s;
   font-family: 'Space Grotesk', sans-serif;
 }
@@ -478,17 +478,17 @@ footer {
 .modal-eyebrow {
   font-family: 'Space Mono', monospace; font-size: 10px;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .modal h2 {
-  font-size: clamp(28px, 3vw, 42px); font-weight: 700;
-  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 36px;
+  font-size: clamp(22px, 2.5vw, 34px); font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 28px;
 }
-.modal-form { display: flex; flex-direction: column; gap: 20px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-group { display: flex; flex-direction: column; gap: 8px; }
+.modal-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
 .form-group label {
-  font-size: 11px; font-family: 'Space Mono', monospace;
+  font-size: 10px; font-family: 'Space Mono', monospace;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
 }
 .form-group input,
@@ -496,10 +496,11 @@ footer {
 .form-group textarea {
   background: rgba(240,244,255,0.04);
   border: 1px solid rgba(240,244,255,0.1);
-  color: var(--white); font-family: 'Space Grotesk', sans-serif; font-size: 15px;
-  padding: 14px 18px; outline: none;
+  color: var(--white); font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+  padding: 11px 16px; outline: none;
   transition: border-color 0.3s; resize: none; cursor: none;
   appearance: none;
+  border-radius: 4px;
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: rgba(240,244,255,0.25); }
@@ -509,28 +510,28 @@ footer {
 .form-group select option { background: #010810; color: var(--white); }
 .form-submit {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 4px;
 }
-.form-note { font-size: 12px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
+.form-note { font-size: 11px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
 
-/* SUCCESS STATE */
+/* SUCCESS STATE - compact */
 .modal-success {
   display: none;
   text-align: center;
-  padding: 20px 0;
+  padding: 16px 0 8px;
 }
 
 .check-ring-wrap {
-  width: 76px;
-  height: 76px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  padding: 2.5px;
+  padding: 2px;
   background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
   animation: rotateBorder 3s linear infinite;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 32px;
+  margin: 0 auto 20px;
 }
 .check-ring-inner {
   width: 100%;
@@ -543,24 +544,25 @@ footer {
 }
 
 .modal-success h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   background: linear-gradient(90deg, #00E5FF, #7C3AED, #EC4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .modal-success p {
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(240,244,255,0.42);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 18px 20px; }
+  .nav-logo-img { height: 56px; }
   #hero { padding: 0 20px; min-height: 100svh; }
   .hero-headline { font-size: clamp(48px, 12vw, 88px); margin-bottom: 20px; }
   .hero-eyebrow { margin-bottom: 18px; }
@@ -608,8 +610,8 @@ footer {
   footer { flex-direction: column; gap: 20px; align-items: flex-start; }
   .footer-right { align-items: flex-start; }
   .modal-gradient-wrap { margin: 12px; max-height: 90vh; overflow-y: auto; border-radius: 18px; }
-  .modal { padding: 32px 22px; border-radius: 16px; }
-  .modal h2 { font-size: clamp(22px, 6vw, 34px); margin-bottom: 24px; }
+  .modal { padding: 28px 20px 24px; border-radius: 16px; }
+  .modal h2 { font-size: clamp(20px, 6vw, 28px); margin-bottom: 20px; }
   .form-row { grid-template-columns: 1fr; }
   .form-submit { flex-direction: column; gap: 12px; align-items: flex-start; }
   .form-submit .btn-primary { width: 100%; justify-content: center; }
@@ -675,17 +677,12 @@ footer {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.5s 0.3s, transform 0.6s 0.25s cubic-bezier(0.16,1,0.3,1);
-  
-  /* SCROLLING FIX ADDED HERE */
   max-height: 100vh;
   overflow-y: auto;
-  /* Style the scrollbar to be hidden but functional */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.chaos-menu-content::-webkit-scrollbar { 
-  display: none; /* Chrome, Safari, Opera */
-}
+.chaos-menu-content::-webkit-scrollbar { display: none; }
 
 .chaos-menu.open .chaos-menu-content { opacity: 1; transform: translateY(0); }
 .chaos-menu-label {
@@ -714,7 +711,7 @@ footer {
 .chaos-nav-item:nth-child(4) .chaos-nav-link { transition-delay: 0.50s, 0s; }
 .chaos-nav-link:hover { color: var(--cyan); }
 
-/* CHAOS MENU FOOTER — inline row with ig icon */
+/* CHAOS MENU FOOTER */
 .chaos-menu-footer {
   display: flex;
   flex-direction: column;
@@ -725,12 +722,18 @@ footer {
   font-size: 13px; color: rgba(240,244,255,0.4);
   font-family: 'Space Mono', monospace; letter-spacing: 0.1em; line-height: 1.8;
 }
-/* the row that holds the email link + ig icon side by side */
 .chaos-cta-row {
   display: flex;
   align-items: center;
   gap: 14px;
   margin-top: 4px;
+}
+/* Push instagram to extreme right */
+.chaos-cta-row-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .chaos-menu-cta a {
   color: var(--cyan); text-decoration: none;
@@ -744,7 +747,7 @@ footer {
   opacity: 0.5; vertical-align: super;
 }
 
-/* ── INSTAGRAM ICON — inline with email ── */
+/* INSTAGRAM ICON — extreme right */
 .chaos-ig-btn {
   flex-shrink: 0;
   width: 38px;
@@ -760,15 +763,12 @@ footer {
   cursor: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
-
-  /* hidden by default */
   opacity: 0;
   transform: scale(0.3) rotate(-45deg);
   transition:
     opacity 0s 0s,
     transform 0s 0s;
 }
-/* entrance when menu opens */
 .chaos-menu.open .chaos-ig-btn {
   opacity: 1;
   transform: scale(1) rotate(0deg);
@@ -776,7 +776,6 @@ footer {
     opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.68s,
     transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.64s;
 }
-/* hover */
 .chaos-ig-btn:hover {
   transform: scale(1.18) rotate(-6deg) !important;
   transition:
@@ -784,7 +783,6 @@ footer {
     opacity 0.2s !important;
   box-shadow: 0 0 20px rgba(238,42,123,0.6), 0 0 40px rgba(98,40,215,0.3);
 }
-/* tap */
 .chaos-ig-btn:active {
   transform: scale(0.88) rotate(3deg) !important;
   transition: transform 0.1s ease !important;
@@ -793,7 +791,6 @@ footer {
   width: 20px;
   height: 20px;
 }
-/* subtle pulse ring */
 .chaos-ig-ripple {
   position: absolute;
   inset: -2px;
@@ -855,7 +852,7 @@ footer {
           </div>
           <div class="form-group">
             <label for="fmessage">Describe the chaos</label>
-            <textarea id="fmessage" name="message" rows="4" placeholder="Tell us what's going on — the problem, the goal, where you're stuck. The messier the better."></textarea>
+            <textarea id="fmessage" name="message" rows="3" placeholder="Tell us what's going on — the problem, the goal, where you're stuck. The messier the better."></textarea>
           </div>
           <div class="form-submit">
             <span class="form-note">We respond within 48h</span>
@@ -866,7 +863,7 @@ footer {
       <div class="modal-success" id="modalSuccess">
         <div class="check-ring-wrap">
           <div class="check-ring-inner">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 17L13 23L25 10" stroke="url(#tick-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
               <defs>
                 <linearGradient id="tick-grad" x1="7" y1="10" x2="25" y2="23" gradientUnits="userSpaceOnUse">
@@ -1243,10 +1240,10 @@ footer {
     </ul>
 
     <div class="chaos-menu-footer">
-      <div class="chaos-menu-cta">
+      <div class="chaos-menu-cta" style="width:100%;">
         Ready to start?
-        <!-- email + instagram icon on the same line -->
-        <div class="chaos-cta-row">
+        <!-- email + instagram icon pushed to extreme right -->
+        <div class="chaos-cta-row-inner">
           <a href="#" class="open-modal chaos-close-menu">hello@somehow.pro &rarr;</a>
           <a
             href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
@@ -1369,9 +1366,17 @@ function initModal() {
   const modalFormWrap = document.getElementById('modalFormWrap');
   if (!modal || !modalClose || !contactForm) return;
 
+  function resetForm() {
+    // FIX 2: Reset all fields after successful submission
+    contactForm.reset();
+    document.getElementById('fname').style.borderColor = '';
+    document.getElementById('femail').style.borderColor = '';
+  }
+
   function openModal() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Always show the form when opening (not the success state)
     modalFormWrap.style.display = '';
     modalSuccess.style.display = 'none';
   }
@@ -1418,6 +1423,7 @@ function initModal() {
       if (data.success) {
         modalFormWrap.style.display = 'none';
         modalSuccess.style.display = 'block';
+        resetForm(); // FIX 2: clear fields
       } else {
         alert("There was an error submitting the form. Please try again.");
       }
