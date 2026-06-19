@@ -513,6 +513,10 @@ footer {
 }
 .form-note { font-size: 11px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
 
+/* Remove property definitions if they are no longer used elsewhere */
+/* @property --angle ... */
+/* @keyframes rotateBorder ... */
+
 /* SUCCESS STATE - compact */
 .modal-success {
   display: none;
@@ -525,17 +529,18 @@ footer {
   height: 60px;
   border-radius: 50%;
   padding: 2px;
-  background: conic-gradient(from var(--angle), #00E5FF, #3B82F6, #7C3AED, #EC4899, #FF6B35, #FFD700, #00E5FF);
-  animation: rotateBorder 3s linear infinite;
+  background: var(--void); /* Base dark background */
+  border: 1px solid var(--cyan); /* Simple cyan border */
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2); /* Subtle glow */
 }
 .check-ring-inner {
   width: 100%;
   height: 100%;
-  background: #010810;
+  background: var(--void);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -547,10 +552,7 @@ footer {
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 8px;
-  background: linear-gradient(90deg, #00E5FF, #7C3AED, #EC4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--cyan); /* Changed from gradient to solid cyan */
 }
 .modal-success p {
   font-size: 14px;
@@ -902,13 +904,7 @@ footer {
         <div class="check-ring-wrap">
           <div class="check-ring-inner">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L13 23L25 10" stroke="url(#tick-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <defs>
-                <linearGradient id="tick-grad" x1="7" y1="10" x2="25" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#00E5FF"/>
-                  <stop offset="100%" stop-color="#7C3AED"/>
-                </linearGradient>
-              </defs>
+              <path d="M7 17L13 23L25 10" stroke="#00E5FF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
