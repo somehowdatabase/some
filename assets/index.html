@@ -747,6 +747,10 @@ footer {
 }
 
 /* Instagram Button */
+/* =========================
+   Instagram Button
+========================= */
+
 .chaos-ig-btn {
   width: 48px;
   height: 48px;
@@ -762,43 +766,73 @@ footer {
   justify-content: center;
 
   text-decoration: none;
-  transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* Hidden Initially */
+  opacity: 0;
+  transform: scale(0.3) rotate(-45deg);
+
+  /* Show After 1.5s */
+  animation: instaReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 1.5s;
 
   box-shadow:
     0 0 10px rgba(0, 31, 84, 0.4),
     0 0 20px rgba(0, 31, 84, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
-/* Icon Color */
+/* SVG Icon */
 .chaos-ig-btn svg {
   width: 24px;
   height: 24px;
-  color: #001F54;
 }
 
-/* Make every SVG element navy blue */
+/* Force Entire Icon Navy Blue */
 .chaos-ig-btn svg *,
 .chaos-ig-btn svg rect,
-.chaos-ig-btn svg circle,
-.chaos-ig-btn svg path {
+.chaos-ig-btn svg path,
+.chaos-ig-btn svg circle {
   stroke: #001F54 !important;
   fill: transparent;
 }
 
-/* Small Camera Dot */
+/* Camera Dot */
 .chaos-ig-btn svg circle:last-child {
   fill: #001F54 !important;
 }
 
-/* Hover Effect */
+/* Hover */
 .chaos-ig-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 
   background: #002b73;
 
   box-shadow:
     0 0 20px rgba(0, 31, 84, 0.8),
     0 0 40px rgba(0, 31, 84, 0.5);
+}
+
+/* Reveal Animation */
+@keyframes instaReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-45deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 /* Mobile */
@@ -1248,7 +1282,7 @@ footer {
           <a href="#" class="open-modal chaos-close-menu">hello@somehow.pro &rarr;</a>
           <!-- INSTAGRAM ICON — extreme right -->
 <a href="#" class="chaos-ig-btn" aria-label="Instagram">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <svg viewBox="0 0 24 24" fill="none">
     <rect x="3" y="3" width="18" height="18" rx="5"
           stroke="currentColor" stroke-width="2"/>
     <circle cx="12" cy="12" r="4"
