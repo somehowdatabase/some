@@ -153,76 +153,6 @@ nav::before {
 }
 @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
-
-
-@keyframes igPulse {
-  0%   { inset: -3px; border-color: rgba(238,42,123,0.7); border-radius: 19px; }
-  100% { inset: -18px; border-color: rgba(238,42,123,0); border-radius: 34px; }
-}
-@media (max-width: 900px) {
-  .chaos-ig-btn { bottom: 52px; right: 20px; }
-}
-
-/* ── INSTAGRAM ICON IN CHAOS MENU ── */
-.chaos-ig-btn {
-  position: absolute;
-  bottom: 60px;
-  right: 24px;
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
-  border: none;
-  cursor: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  opacity: 0;
-  transform: scale(0.4) rotate(-30deg) translateY(20px);
-  transition:
-    opacity 0s,
-    transform 0s;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  z-index: 210;
-}
-.chaos-menu.open .chaos-ig-btn {
-  opacity: 1;
-  transform: scale(1) rotate(0deg) translateY(0);
-  transition:
-    opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.62s,
-    transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.58s;
-}
-.chaos-ig-btn:hover {
-  transform: scale(1.13) rotate(-4deg) !important;
-  box-shadow: 0 0 24px rgba(238,42,123,0.55), 0 0 48px rgba(98,40,215,0.3);
-  transition:
-    transform 0.3s cubic-bezier(0.16,1,0.3,1) !important,
-    box-shadow 0.3s ease !important,
-    opacity 0.3s !important;
-}
-.chaos-ig-btn:active {
-  transform: scale(0.92) rotate(2deg) !important;
-  transition: transform 0.1s ease !important;
-}
-.chaos-ig-btn svg {
-  width: 26px;
-  height: 26px;
-}
-.chaos-ig-ripple {
-  position: absolute;
-  inset: -3px;
-  border-radius: 19px;
-  border: 1.5px solid rgba(238,42,123,0.0);
-  pointer-events: none;
-}
-.chaos-menu.open .chaos-ig-ripple {
-  animation: igPulse 2.2s ease-out 1.3s infinite;
-}
-
-
-  
 /* BUTTONS */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -492,7 +422,7 @@ footer {
 .reveal-delay-4 { transition-delay: 0.4s; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 
-/* ─── RAINBOW BORDER ANIMATION ─────────────────── */
+/* RAINBOW BORDER ANIMATION */
 @property --angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -503,7 +433,7 @@ footer {
   100% { --angle: 360deg; }
 }
 
-/* ─── CONTACT MODAL ─────────────────────────────── */
+/* CONTACT MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(0,7,15,0.96);
@@ -514,7 +444,6 @@ footer {
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
 
-/* Rainbow spinning wrapper */
 .modal-gradient-wrap {
   position: relative;
   max-width: 520px;
@@ -583,14 +512,13 @@ footer {
 }
 .form-note { font-size: 12px; color: rgba(240,244,255,0.3); font-family: 'Space Mono', monospace; }
 
-/* ─── SUCCESS STATE ─────────────────────────────── */
+/* SUCCESS STATE */
 .modal-success {
   display: none;
   text-align: center;
   padding: 20px 0;
 }
 
-/* Spinning rainbow ring around checkmark */
 .check-ring-wrap {
   width: 76px;
   height: 76px;
@@ -687,7 +615,7 @@ footer {
   .cursor, .cursor-ring { display: none !important; }
 }
 
-/* ── CHAOS TRIGGER ── */
+/* CHAOS TRIGGER */
 .chaos-trigger {
   position: relative; z-index: 201;
   background: none; border: none;
@@ -707,7 +635,7 @@ footer {
 .chaos-trigger.active .ct-svg { transform: rotate(180deg); }
 .chaos-trigger.active .ct-path-1 { stroke: var(--cyan); }
 
-/* ── CHAOS MENU OVERLAY ── */
+/* CHAOS MENU OVERLAY */
 .chaos-menu {
   position: fixed; inset: 0; z-index: 190;
   pointer-events: none;
@@ -773,14 +701,28 @@ footer {
 .chaos-nav-item:nth-child(3) .chaos-nav-link { transition-delay: 0.44s, 0s; }
 .chaos-nav-item:nth-child(4) .chaos-nav-link { transition-delay: 0.50s, 0s; }
 .chaos-nav-link:hover { color: var(--cyan); }
-.chaos-menu-footer { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+
+/* CHAOS MENU FOOTER — inline row with ig icon */
+.chaos-menu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+}
 .chaos-menu-cta {
   font-size: 13px; color: rgba(240,244,255,0.4);
   font-family: 'Space Mono', monospace; letter-spacing: 0.1em; line-height: 1.8;
 }
+/* the row that holds the email link + ig icon side by side */
+.chaos-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
 .chaos-menu-cta a {
   color: var(--cyan); text-decoration: none;
-  transition: opacity 0.3s; cursor: none; display: block; margin-top: 4px;
+  transition: opacity 0.3s; cursor: none;
 }
 .chaos-menu-cta a:hover { opacity: 0.7; }
 .chaos-item-num {
@@ -789,9 +731,77 @@ footer {
   letter-spacing: 0.1em; margin-right: 24px;
   opacity: 0.5; vertical-align: super;
 }
+
+/* ── INSTAGRAM ICON — inline with email ── */
+.chaos-ig-btn {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  cursor: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+
+  /* hidden by default */
+  opacity: 0;
+  transform: scale(0.3) rotate(-45deg);
+  transition:
+    opacity 0s 0s,
+    transform 0s 0s;
+}
+/* entrance when menu opens */
+.chaos-menu.open .chaos-ig-btn {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition:
+    opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.68s,
+    transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.64s;
+}
+/* hover */
+.chaos-ig-btn:hover {
+  transform: scale(1.18) rotate(-6deg) !important;
+  transition:
+    transform 0.28s cubic-bezier(0.16,1,0.3,1) !important,
+    opacity 0.2s !important;
+  box-shadow: 0 0 20px rgba(238,42,123,0.6), 0 0 40px rgba(98,40,215,0.3);
+}
+/* tap */
+.chaos-ig-btn:active {
+  transform: scale(0.88) rotate(3deg) !important;
+  transition: transform 0.1s ease !important;
+}
+.chaos-ig-btn svg {
+  width: 20px;
+  height: 20px;
+}
+/* subtle pulse ring */
+.chaos-ig-ripple {
+  position: absolute;
+  inset: -2px;
+  border-radius: 13px;
+  border: 1.5px solid rgba(238,42,123,0);
+  pointer-events: none;
+}
+.chaos-menu.open .chaos-ig-ripple {
+  animation: igPulse 2.4s ease-out 1.4s infinite;
+}
+@keyframes igPulse {
+  0%   { inset: -2px; border-color: rgba(238,42,123,0.75); border-radius: 13px; }
+  100% { inset: -14px; border-color: rgba(238,42,123,0); border-radius: 25px; }
+}
+
 @media (max-width: 900px) {
   .chaos-menu-content { padding: 100px 24px 60px; }
   .chaos-nav-link { font-size: clamp(28px, 8vw, 52px); padding: 20px 0; }
+  .chaos-ig-btn { width: 36px; height: 36px; border-radius: 10px; }
+  .chaos-ig-btn svg { width: 18px; height: 18px; }
 }
 </style>
 </head>
@@ -1219,31 +1229,32 @@ footer {
         </a>
       </li>
     </ul>
-     
+
     <div class="chaos-menu-footer">
       <div class="chaos-menu-cta">
         Ready to start?
-        <br> 
-        <a href="#" class="open-modal chaos-close-menu">hello@somehow.pro &rarr;</a>
-        
+        <!-- email + instagram icon on the same line -->
+        <div class="chaos-cta-row">
+          <a href="#" class="open-modal chaos-close-menu">hello@somehow.pro &rarr;</a>
+          <a
+            href="https://www.instagram.com/YOUR_INSTAGRAM_HANDLE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="chaos-ig-btn"
+            aria-label="Follow on Instagram"
+          >
+            <div class="chaos-ig-ripple"></div>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8"/>
+              <circle cx="17.5" cy="6.5" r="1.1" fill="white"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <a href="https://www.instagram.com/somehowofficial?igsh=dHZzcHF2MWc0MHQ4&utm_source=qr"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="chaos-ig-btn"
-  aria-label="Follow on Instagram"
->
-  <div class="chaos-ig-ripple"></div>
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="1.8"/>
-    <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8"/>
-    <circle cx="17.5" cy="6.5" r="1.1" fill="white"/>
-  </svg>
-</a>
       <button class="btn-primary open-modal chaos-close-menu" style="font-size:13px;padding:12px 28px;">Start a Project &rarr;</button>
     </div>
   </div>
- 
 </div>
 
 <script type="module">
